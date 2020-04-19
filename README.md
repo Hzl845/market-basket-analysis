@@ -20,12 +20,12 @@ First download the project as zip archive and extract it to your desired locatio
 $ git clone https://github.com/pranitbose/market-basket-analysis.git
 ```
 
-This project uses Hadoop 2.7.3 by default. If you have an older release of Hadoop installed then you can update the jar dependencies of the project to your current Hadoop release version. For example if you have Hadoop 2.7.1 installed then you need to edit the _build.gradle_ file changing the following lines to match your current version. Change it from 2.7.3 to 2.x.y,
+This project uses Hadoop 2.7.3 by default. If you have an older release of Hadoop installed then you can update the jar dependencies of the project to your current Hadoop release version. For example if you have Hadoop 3.1.3 installed then you need to edit the _build.gradle_ file changing the following lines to match your current version. Change it from 2.7.3 to 2.x.y,
 
 ```groovy
 dependencies {
-	compile 'org.apache.hadoop:hadoop-common:2.7.1'
-	compile 'org.apache.hadoop:hadoop-mapreduce-client-core:2.7.1'
+	compile 'org.apache.hadoop:hadoop-common:3.1.3'
+	compile 'org.apache.hadoop:hadoop-mapreduce-client-core:3.1.3'
 	compile 'org.apache.hadoop:hadoop-core:1.2.1'
 }
 ```
