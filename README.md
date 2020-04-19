@@ -54,20 +54,6 @@ $ gradle build
 
 __Run the jar__
 
-```
-$ gradle run
-```
-
-That's all you need to do! Just sit and wait for the the gradle _run_ task to complete running this project. This _run_ task will basically do the following:
-1. Copy input dataset from local File System to HDFS (Overwrites if the directory in HDFS already exists)
-2. Delete the output directory in HDFS
-3. Run the jar with required arguments using `hadoop jar` command
-4. Copy the output directory in HDFS to local File System (Overwrites if the directory in local file system already exists. Give a different output path in local file system or rename the output directories produced by previous runs if you don't want previous Job or Project outputs overwritten)
-
-_NOTE_: If you change some value in the config file then you can only execute `gradle run` command provided that you had already built the jar before at some point of time. You will only need to execute `gradle build` again if you have changed the source code of some file or some jar dependencies.
-
-If you want to skip the `gradle run` step and manually want to run the jar file to have more control on what happens then you need to know the paramters you need to pass while executing the jar file.
-
 You can run the project like this:
 
 ```
