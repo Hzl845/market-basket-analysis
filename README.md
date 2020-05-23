@@ -20,12 +20,12 @@ First download the project as zip archive and extract it to your desired locatio
 $ git clone https://github.com/pranitbose/market-basket-analysis.git
 ```
 
-This project uses Hadoop 2.7.3 by default. If you have an older release of Hadoop installed then you can update the jar dependencies of the project to your current Hadoop release version. For example if you have Hadoop 3.1.3 installed then you need to edit the _build.gradle_ file changing the following lines to match your current version. Change it from 2.7.3 to 3.1.3,
+This project uses Hadoop 2.7.3 by default. If you have an older release of Hadoop installed then you can update the jar dependencies of the project to your current Hadoop release version. For example if you have Hadoop 2.7.1 installed then you need to edit the _build.gradle_ file changing the following lines to match your current version. Change it from 2.7.3 to 2.7.1,
 
 ```groovy
 dependencies {
-	compile 'org.apache.hadoop:hadoop-common:3.1.3'
-	compile 'org.apache.hadoop:hadoop-mapreduce-client-core:3.1.3'
+	compile 'org.apache.hadoop:hadoop-common:2.7.1'
+	compile 'org.apache.hadoop:hadoop-mapreduce-client-core:2.7.1'
 	compile 'org.apache.hadoop:hadoop-core:1.2.1'
 }
 ```
@@ -48,8 +48,9 @@ Move into the project folder and do the following,
 
 __Compile and Build the jar__
 
-```
-$ gradle build
+```bash
+cd market-basket-analysis
+gradle build
 ```
 
 __Run the jar__
@@ -68,6 +69,23 @@ $ hadoop jar ./build/libs/mba.jar <inp_dir> <out_dir> <min_sup (0.0-1.0)> <min_c
 - *delimiter*: literal used in the dataset to separate multiple items in a single line of transaction. For a .csv file , will be the separator. If the the separator is whitespace then use qoutes to enclose it like this " "
 - *max_pass*: maximum number of iterations you want the Apriori algorithm to run for. A value of 5 will find all frequent item-sets of size upto 5 if possible given the threshold support specified above.
 - *filterbylift*: a value of 1 will filter all the rules by positive lift percentage and final output will only contain rules with lift > 1.0 otherwise a value of 0 will output all the rules irrespective of the lift value.
+
+For example:
+
+```bash
+hdfs dfs -mkdir -p /input
+hdfs dfs -mkdir -p /output
+# Put the dataset groceries.csv in the market-basket-analysis folder
+# Move into the project folder and do the following
+cd market-basket-analysis
+hdfs dfs -copyFromLocal groceries.csv /input
+hadoop jar ./build/libs/mba.jar /input /output 0.02 0.4 9835 "," 1
+```
+Get the result：
+
+```bash
+hdfs dfs -cat /output/final-output/*
+```
 
 ## License
 This project is licensed under the terms of the MIT license.
