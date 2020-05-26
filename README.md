@@ -79,7 +79,7 @@ hdfs dfs -mkdir -p /output
 # Move into the project folder and do the following
 cd market-basket-analysis
 hdfs dfs -copyFromLocal groceries.csv /input
-hadoop jar ./build/libs/mba.jar /input /output 0.02 0.4 9835 "," 1
+hadoop jar ./build/libs/mba.jar /input /output 0.02 0.4 9835 "," 10 1
 ```
 Get the result：
 
